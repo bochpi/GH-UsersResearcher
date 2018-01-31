@@ -6,8 +6,10 @@ class Input extends Component {
 
   handleInputChange = (e) => {
     e.preventDefault();
-    const splittedUsers = e.target.value.split(" ");
-    this.setState({currentInputContent: e.target.value, usersList: splittedUsers});
+    const preprocessedInput = e.target.value.replace("  ", " ");
+    const splittedUsers = preprocessedInput.split(" ");
+    //console.log(e.target);
+    this.setState({currentInputContent: preprocessedInput, usersList: splittedUsers});
   }
 
   render() {
