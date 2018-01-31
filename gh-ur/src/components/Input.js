@@ -70,7 +70,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {  
   return {
     inputChanged: (e) => {
-      const action = {type: 'HANDLE_INPUT_CHANGE', currentInput: e.target.value};
+      const preprocessedInput = e.target.value.replace("  ", " ");
+      const splittedUsers = preprocessedInput.split(" ");
+      const action = {type: 'HANDLE_INPUT_CHANGE', currentInput: preprocessedInput, users: splittedUsers};
       dispatch(action);
     }
   }

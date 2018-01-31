@@ -55,3 +55,9 @@
   from { bottom: -30px; }
   to { bottom: 0; }
 }
+
+.userTab {
+  padding: 15px;
+  margin: 10px;
+  background-color: gray;
+}
