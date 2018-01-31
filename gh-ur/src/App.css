@@ -22,7 +22,36 @@
   font-size: large;
 }
 
+.GH-users-input {
+  position: fixed;
+  bottom: 0;
+  animation: popup-from-bottom;
+  animation-duration: 1s;
+  width: 250px;
+  border: solid 1px black;
+  border-top-left-radius: 30px;
+  padding: 20px;
+  border: solid 1px;
+  border-left: 0;
+}
+
+.GH-users-button {
+  position: fixed;
+  bottom: 0;
+  animation: popup-from-bottom;
+  animation-duration: 1s;
+  padding: 20px;
+  background-color: silver;
+  border-top-right-radius: 30px;
+  border: none;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes popup-from-bottom {
+  from { bottom: -30px; }
+  to { bottom: 0; }
 }
