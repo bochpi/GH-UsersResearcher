@@ -54,7 +54,6 @@ class Input extends Component {
       <span>
         <input className="GH-users-input" type="text" value={this.props.currentInput}
         onChange={this.props.inputChanged} placeholder="Put GitHub Users..." />
-        {/* <h1>{this.props.text.content || 'Hello World!'}</h1> */}
         <button className="GH-users-button">OK</button>
       </span>
     );

@@ -15,7 +15,7 @@ class TabList extends Component {
     console.log(this.props)
     return (
       <span>
-        {this.renderUsersTabs(this.props.users)}
+        {this.props.users ? this.renderUsersTabs(this.props.users) : <div>s</div>}
       </span>
     );
   }
@@ -26,17 +26,6 @@ const mapStateToProps = (state) => {
     users: state.users,
   }
 };
-
-// const mapDispatchToProps = (dispatch) => {  
-//   return {
-//     inputChanged: (e) => {
-//       const preprocessedInput = e.target.value.replace("  ", " ");
-//       const splittedUsers = preprocessedInput.split(" ");
-//       const action = {type: 'HANDLE_INPUT_CHANGE', currentInput: preprocessedInput, users: splittedUsers};
-//       dispatch(action);
-//     }
-//   }
-// };
 
 TabList = connect(mapStateToProps)(TabList)
 

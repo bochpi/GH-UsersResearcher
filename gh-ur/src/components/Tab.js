@@ -2,21 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Tab extends Component {
+
+  // activeUser(name) {
+  //   console.log(name);
+  // }
+
   render() {
     return (
-      <span className="userTab">
+      <span className="userTab" onClick={() => this.props.changeUser(this.props.name)}>
         {this.props.name}
       </span>
     );
   }
 }
 
-const mapStateToProps = (state) => {  
+const mapDispatchToProps = (dispatch) => {  
   return {
-    users: state.users,
+    changeUser: (name) => {
+      const action = {type: 'ACTIVE_USER', activeUser: name};
+      dispatch(action);
+    }
   }
 };
 
-Tab = connect(mapStateToProps)(Tab)
+const mapStateToProps = (state) => {  
+  return {
+    activeUser: state.activeUser,
+    users: state.users
+  }
+};
+
+Tab = connect(mapStateToProps, mapDispatchToProps)(Tab)
 
 export default Tab;
