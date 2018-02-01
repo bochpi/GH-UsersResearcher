@@ -8,6 +8,7 @@ class Tab extends Component {
 
   serveTab = () => {
     this.props.changeUser(this.props.name);
+    this.props.fetchUser(this.props.name);
     this.props.fetchRepos(this.props.name);
   }
 
@@ -27,8 +28,12 @@ const mapDispatchToProps = (dispatch) => {
       const action = {type: 'ACTIVE_USER', activeUser: name};
       dispatch(action);
     },
+    fetchUser: (user) => {
+      axios.get(`${GH_API_BASIC}${user}`)
+      .then((res) => dispatch({type: 'FETCH_USER', fetchedUser: res.data}));
+    },
     fetchRepos: (user) => {
-      const request = axios.get(`${GH_API_BASIC}${user}/repos`)
+      axios.get(`${GH_API_BASIC}${user}/repos`)
       .then((res) => dispatch({type: 'FETCH_REPOS', fetchedRepos: res.data}));
     }
   };

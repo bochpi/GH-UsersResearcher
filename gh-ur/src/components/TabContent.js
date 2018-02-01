@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
 import { Icon } from 'react-fa';
-import Tab from './Tab';
 
 const GH_API_BASIC = 'https://api.github.com/users/';
 
@@ -11,14 +10,17 @@ class TabContent extends Component {
 
   renderRepos(repos) {
     return repos.map((repo) => {
-        return (
-        <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
-        <li className="example"><Icon name="github" className="mr" />{repo.full_name}</li>
-        </ReactCSSTransitionGroup>);
+        return <li className="example" key={repo.full_name}><Icon name="github" className="mr" />{repo.full_name}</li>;
     });
+  }
+
+  renderUserInfo(repo) {
+    return( 
+    <div className="user-container">
+      <img src={repo.avatar_url} alt={repo.login}/>
+      <h1>{repo.login}</h1>
+      <a href={repo.html_url} target="blank">{repo.html_url}</a>
+    </div>);
   }
 
   toggleContent() {
@@ -32,11 +34,22 @@ class TabContent extends Component {
 
   render() {
     return (
-      <ul>
-        {this.props.fetchedRepos.length > 0 ?
-            this.renderRepos(this.props.fetchedRepos) :
-        this.toggleContent()}
-      </ul>
+      <div style={{marginBottom: 100}}>
+        {this.props.fetchedRepos.length > 0 ? this.renderUserInfo(this.props.fetchedRepos[0].owner) : null}
+        <ul>
+          {this.props.fetchedRepos.length > 0 ?
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionAppear={true}
+              transitionAppearTimeout={500}
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}
+              className="animated-items-list">
+            {this.renderRepos(this.props.fetchedRepos)}
+            </ReactCSSTransitionGroup> :
+          this.toggleContent()}
+        </ul>
+      </div>
     );
   }
 }
@@ -44,6 +57,7 @@ class TabContent extends Component {
 const mapStateToProps = (state) => {  
   return {
     activeUser: state.activeUser,
+    fetchedUser: state.fetchedUser,
     fetchedRepos: state.fetchedRepos,
     isTriggered: state.isTriggered,
   }
@@ -54,6 +68,11 @@ const mapDispatchToProps = (dispatch) => {
     fetchRepos: (user) => {
       const request = axios.get(`${GH_API_BASIC}${user}/repos`);      
       const action = {type: 'FETCH_REPOS', fetchedRepos: request};
+      dispatch(action);
+    },
+    fetchUser: (user) => {
+      const request = axios.get(`${GH_API_BASIC}${user}`);      
+      const action = {type: 'FETCH_REPOS', fetchedUser: request};
       dispatch(action);
     }
   }

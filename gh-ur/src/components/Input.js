@@ -35,18 +35,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action);
     },
     triggerButton: (firstUser) => {
-      const request = axios.get(`${GH_API_BASIC}${firstUser}/repos`)
+      axios.get(`${GH_API_BASIC}${firstUser}/repos`)
       .then((res) => dispatch({type: 'TRIGGER_BUTTON', isTriggered: true, fetchedRepos: res.data}));
-      // const action = {type: 'TRIGGER_BUTTON', isTriggered: true};
-      // dispatch(action);
     }
   }
 };
 
 Input = connect(mapStateToProps, mapDispatchToProps)(Input)
-
-
-{/* <input className="GH-users-input" type="text" value={this.state.currentInputContent} placeholder="Put GitHub Users..."
-        onChange={this.handleInputChange} /> */}
 
 export default Input;
