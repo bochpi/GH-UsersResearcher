@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
+import { Icon } from 'react-fa';
 import Tab from './Tab';
 
 const GH_API_BASIC = 'https://api.github.com/users/';
 
 class TabContent extends Component {
 
-  componentDidMount(){
-    this.props.fetchRepos(this.props.activeUser);
-  }
-
   renderRepos(repos) {
     return repos.map((repo) => {
-        return <li>{repo.full_name}</li>
+        return (
+        <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+        <li className="example"><Icon name="github" className="mr" />{repo.full_name}</li>
+        </ReactCSSTransitionGroup>);
     });
-    console.log(repos);
+  }
+
+  toggleContent() {
+    if (!this.props.isTriggered) {
+      return null;
+    }
+    else {
+      return <div><Icon spin name="spinner" /></div>;
+    }
   }
 
   render() {
-    console.log(this.props.repos);
     return (
       <ul>
-        {this.props.fetchedRepos.length > 0 ? this.renderRepos(this.props.fetchedRepos) : <div>Brak!</div>}
+        {this.props.fetchedRepos.length > 0 ?
+            this.renderRepos(this.props.fetchedRepos) :
+        this.toggleContent()}
       </ul>
     );
   }
@@ -31,7 +44,8 @@ class TabContent extends Component {
 const mapStateToProps = (state) => {  
   return {
     activeUser: state.activeUser,
-    fetchedRepos: state.fetchedRepos
+    fetchedRepos: state.fetchedRepos,
+    isTriggered: state.isTriggered,
   }
 };
 

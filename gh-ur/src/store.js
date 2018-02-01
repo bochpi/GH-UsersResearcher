@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_REPOS':
       return {...state, fetchedRepos: action.fetchedRepos};
     case 'TRIGGER_BUTTON':
-      return {...state, isTriggered: action.isTriggered};
+      return {...state, isTriggered: action.isTriggered, fetchedRepos: action.fetchedRepos};
     default:
       return state;
     }

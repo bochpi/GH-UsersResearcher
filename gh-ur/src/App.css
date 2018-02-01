@@ -28,13 +28,6 @@
   left: 0;
 }
 
-.disabled-div {
-  z-index: 10;;
-  height: auto;
-  opacity: 0.3;
-  background-color: gray;
-}
-
 #mainInput {
   position: fixed;
   bottom: 0;
@@ -58,6 +51,23 @@
   border: solid 1px silver;
 }
 
+ul {
+  margin-top: 25px;
+  margin-bottom: 100px;
+  list-style-type: none;
+  text-align: left;
+}
+
+hr {
+  margin-top: 25px;
+  width: 80%;
+  opacity: 0.4;
+}
+
+.mr {
+  margin-right: 25px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -69,7 +79,7 @@
 }
 
 #userTabList {
-  position: fixed;
+  position: relative;
   top: 25px;
 }
 
@@ -99,4 +109,28 @@ input[type="text"]:focus, button:focus {
 @keyframes popup-from-top {
   from { top: -30px;}
   to { top: 0; }
+}
+
+/*-------------------------------------------------------------------------------*/
+
+.example-enter {
+  opacity: 0.01;
+  width: 0px;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  width: 100px;
+  transition: 700ms;
+}
+
+.example-leave {
+  opacity: 1;
+  width: 100px;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  width: 0px;
+  transition: 700ms;
 }

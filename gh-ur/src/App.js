@@ -45,10 +45,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-intro">
-          
-        </div>
         <TabList />
+        <hr />
         <TabContent repos={this.props.fetchedRepos} />
         <Input />
       </div>
