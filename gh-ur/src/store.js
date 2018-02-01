@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-
 const initialState = {
   currentInput: '',
   users: [],
-  activeUser: null
+  activeUser: null,
+  fetchedRepos: {},
+  isTriggered: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +13,16 @@ const reducer = (state = initialState, action) => {
       return {...state, currentInput: action.currentInput, users: action.users};
     case 'ACTIVE_USER':
       return {...state, activeUser: action.activeUser};
+    case 'FETCH_REPOS':
+      return {...state, fetchedRepos: action.fetchedRepos};
+    case 'TRIGGER_BUTTON':
+      return {...state, isTriggered: action.isTriggered};
     default:
       return state;
     }
   return state;
 }
 
-const store = createStore(reducer);
+//const store = createStore(reducer);
 
-export default store;
+export default reducer;

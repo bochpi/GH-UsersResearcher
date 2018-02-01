@@ -51,10 +51,10 @@ class Input extends Component {
   render() {
     console.log(this.props);
     return (
-      <span>
+      <span id="mainInput">
         <input className="GH-users-input" type="text" value={this.props.currentInput}
         onChange={this.props.inputChanged} placeholder="Put GitHub Users..." />
-        <button className="GH-users-button">OK</button>
+        <button className="GH-users-button" onClick={this.props.triggerButton}>OK</button>
       </span>
     );
   }
@@ -63,6 +63,7 @@ class Input extends Component {
 const mapStateToProps = (state) => {  
   return {
     currentInput: state.currentInput,
+    isTriggered: state.isTriggered
   }
 };
 
@@ -72,6 +73,10 @@ const mapDispatchToProps = (dispatch) => {
       const preprocessedInput = e.target.value.replace("  ", " ");
       const splittedUsers = preprocessedInput.split(" ");
       const action = {type: 'HANDLE_INPUT_CHANGE', currentInput: preprocessedInput, users: splittedUsers};
+      dispatch(action);
+    },
+    triggerButton: () => {
+      const action = {type: 'TRIGGER_BUTTON', isTriggered: true};
       dispatch(action);
     }
   }

@@ -12,9 +12,8 @@ class TabList extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
-      <span>
+      <span id="userTabList">
         {this.props.users ? this.renderUsersTabs(this.props.users) : <div>s</div>}
       </span>
     );
@@ -24,6 +23,7 @@ class TabList extends Component {
 const mapStateToProps = (state) => {  
   return {
     users: state.users,
+    isTriggered: state.isTriggered
   }
 };
 

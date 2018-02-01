@@ -3,15 +3,11 @@ import { connect } from 'react-redux';
 
 class Tab extends Component {
 
-  // activeUser(name) {
-  //   console.log(name);
-  // }
-
   render() {
     return (
-      <span className="userTab" onClick={() => this.props.changeUser(this.props.name)}>
+      <button className="userTab" disabled={this.props.isTriggered ? false : true} onClick={() => this.props.changeUser(this.props.name)}>
         {this.props.name}
-      </span>
+      </button>
     );
   }
 }
@@ -28,7 +24,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {  
   return {
     activeUser: state.activeUser,
-    users: state.users
+    users: state.users,
+    isTriggered: state.isTriggered
   }
 };
 

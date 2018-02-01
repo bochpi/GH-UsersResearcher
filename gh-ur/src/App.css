@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
 }
 
 .App-logo {
@@ -20,30 +24,38 @@
 
 .App-intro {
   font-size: large;
+  position: absolute;
+  left: 0;
+}
+
+.disabled-div {
+  z-index: 10;;
+  height: auto;
+  opacity: 0.3;
+  background-color: gray;
+}
+
+#mainInput {
+  position: fixed;
+  bottom: 0;
+  animation: popup-from-bottom;
+  animation-duration: 1s;
+  z-index: 100;
 }
 
 .GH-users-input {
-  position: fixed;
-  bottom: 0;
-  animation: popup-from-bottom;
-  animation-duration: 1s;
   width: 250px;
-  border: solid 1px black;
+  border: solid 1px silver;
   border-top-left-radius: 30px;
+  border-right: none !important;
   padding: 20px;
-  border: solid 1px;
-  border-left: 0;
 }
 
 .GH-users-button {
-  position: fixed;
-  bottom: 0;
-  animation: popup-from-bottom;
-  animation-duration: 1s;
   padding: 20px;
   background-color: silver;
   border-top-right-radius: 30px;
-  border: none;
+  border: solid 1px silver;
 }
 
 @keyframes App-logo-spin {
@@ -56,8 +68,35 @@
   to { bottom: 0; }
 }
 
+#userTabList {
+  position: fixed;
+  top: 25px;
+}
+
+input[type="text"]:focus, button:focus {
+  outline: none;
+}
+
 .userTab {
   padding: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
   margin: 10px;
-  background-color: gray;
+  border: solid 1px gray;
+  border-radius: 50px;
+  position: relative;
+  transition: all 300ms;
+  animation: popup-from-top;
+  animation-duration: 1s;
+}
+
+.userTab:hover {
+  cursor: pointer;
+  background-color: silver;
+  transition: all 300ms;
+}
+
+@keyframes popup-from-top {
+  from { top: -30px;}
+  to { top: 0; }
 }

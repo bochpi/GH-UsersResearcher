@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 //import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import Input from './components/Input';
 import TabList from './components/TabList';
+import TabContent from './components/TabContent';
 import logo from './logo.svg';
 import './App.css';
 
-const GH_API_BASIC = 'https://api.github.com/users/';
+var w = window.innerWidth;
+var h = window.innerHeight;
 
 class App extends Component {
 
@@ -44,21 +47,24 @@ class App extends Component {
   // }
 
   render() {
-    console.log(this.state);
+    console.log(this.props.isTriggered);
     return (
       <div className="App">
-        <header className="App-header">
-
-        </header>
-        <p className="App-intro">
+        <div className="App-intro">
           <TabList />
-          {/* {this.renderUser(this.state.chosenUsers)}
-          {this.state.chosenRepos ? this.renderRepos(this.state.chosenRepos) : <div>N</div>} */}
-        </p>
+          <TabContent x={this.props.fetchedRepos} />
+        </div>
         <Input />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {  
+  return {
+    fetchedRepos: state.fetchedRepos,
+    isTriggered: state.isTriggered
+  }
+};
+
+export default connect(mapStateToProps)(App);
