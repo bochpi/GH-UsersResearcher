@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import Input from './components/Input';
 import TabList from './components/TabList';
 import TabContent from './components/TabContent';
 import logo from './logo.svg';
 import './App.css';
-
-var w = window.innerWidth;
-var h = window.innerHeight;
 
 class App extends Component {
 
@@ -47,13 +43,13 @@ class App extends Component {
   // }
 
   render() {
-    console.log(this.props.isTriggered);
     return (
       <div className="App">
         <div className="App-intro">
-          <TabList />
-          <TabContent x={this.props.fetchedRepos} />
+          
         </div>
+        <TabList />
+        <TabContent repos={this.props.fetchedRepos} />
         <Input />
       </div>
     );

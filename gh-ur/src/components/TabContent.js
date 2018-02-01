@@ -12,18 +12,17 @@ class TabContent extends Component {
   }
 
   renderRepos(repos) {
-    // return repos.map((repo) => {
-    //   if (repo.length > 0)
-    //     return <li>{repo}</li>
-    // });
+    return repos.map((repo) => {
+        return <li>{repo.full_name}</li>
+    });
     console.log(repos);
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.repos);
     return (
       <ul>
-        {2>1 ? <div></div> : <div></div>}
+        {this.props.fetchedRepos.length > 0 ? this.renderRepos(this.props.fetchedRepos) : <div>Brak!</div>}
       </ul>
     );
   }
