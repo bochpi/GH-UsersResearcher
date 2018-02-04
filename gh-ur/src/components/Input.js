@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     triggerButton: (firstUser) => {
       axios.get(`${GH_API_BASIC}${firstUser}/repos`)
-      .then((res) => dispatch({type: 'TRIGGER_BUTTON', isTriggered: true, fetchedRepos: res.data}));
+      .then((res) => dispatch({type: 'TRIGGER_BUTTON', isTriggered: true, fetchedRepos: res.data, activeUser: firstUser}));
     }
   }
 };

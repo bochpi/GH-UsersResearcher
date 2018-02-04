@@ -163,6 +163,10 @@ a {
   transition: all 500ms;
 }
 
+.user-container {
+  position: relative;
+}
+
 .user-container a:hover {
   box-shadow: 0px 2px 2px #AAA;
   transition: all 500ms;
@@ -184,14 +188,16 @@ a {
   transition: all 500ms; 
 }
 
-/* .example-appear {
-  opacity: 0.01;
+.example-appear {
+  opacity: 0;
+  top: 50px;
 }
 
 .example-appear.example-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
-} */
+  top: 0;
+  transition: all 500ms; 
+}
 
 .example-leave {
   /* transform: scale(1); */
@@ -200,6 +206,34 @@ a {
 }
 
 .example-leave.example-leave-active {
+  /* transform: scale(0);
+  transition: 500ms ease-in all; */
+  opacity: 0;
+  top: 50px;
+  transition: all 500ms;
+}
+
+.abc-enter {
+  /* transform: scale(0); */
+  opacity: 0;
+  top: 50px;
+}
+
+.abc-enter.example-enter-active {
+  /* transform: scale(1);
+  transition: 500ms ease-in all; */
+  opacity: 1;
+  top: 0;
+  transition: all 500ms; 
+}
+
+.abc-leave {
+  /* transform: scale(1); */
+  opacity: 1;
+  top: 0;
+}
+
+.abc-leave.example-leave-active {
   /* transform: scale(0);
   transition: 500ms ease-in all; */
   opacity: 0;

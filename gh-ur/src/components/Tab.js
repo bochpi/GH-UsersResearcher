@@ -7,9 +7,10 @@ const GH_API_BASIC = 'https://api.github.com/users/';
 class Tab extends Component {
 
   serveTab = () => {
-    this.props.changeUser(this.props.name);
-    this.props.fetchUser(this.props.name);
-    this.props.fetchRepos(this.props.name);
+    if (this.props.name !== this.props.activeUser) {
+      this.props.changeUser(this.props.name);
+      this.props.fetchRepos(this.props.name);
+    }
   }
 
   render() {
@@ -27,10 +28,6 @@ const mapDispatchToProps = (dispatch) => {
     changeUser: (name) => {
       const action = {type: 'ACTIVE_USER', activeUser: name};
       dispatch(action);
-    },
-    fetchUser: (user) => {
-      axios.get(`${GH_API_BASIC}${user}`)
-      .then((res) => dispatch({type: 'FETCH_USER', fetchedUser: res.data}));
     },
     fetchRepos: (user) => {
       axios.get(`${GH_API_BASIC}${user}/repos`)

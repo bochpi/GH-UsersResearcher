@@ -28,20 +28,22 @@ class TabContent extends Component {
       return null;
     }
     else {
-      return <div><Icon spin name="spinner" /></div>;
+      return <div>No repos!</div>;
     }
   }
 
   render() {
+
+    if(this.props.fetchedRepos.length === 0) return <div><Icon spin name="spinner" /><br/>Please wait - I am fetching repos of user {this.props.activeUser}!</div>;
     return (
       <div style={{marginBottom: 100}}>
         <ReactCSSTransitionGroup
-          transitionName="example"
+          transitionName="abc"
           transitionAppear={true}
           transitionAppearTimeout={500}
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}
-          className="animated-items-list">
+          className="user-container">
         {this.props.fetchedRepos.length > 0 ? this.renderUserInfo(this.props.fetchedRepos[0].owner) : null}
         </ReactCSSTransitionGroup>
         <ul>
@@ -65,7 +67,6 @@ class TabContent extends Component {
 const mapStateToProps = (state) => {  
   return {
     activeUser: state.activeUser,
-    fetchedUser: state.fetchedUser,
     fetchedRepos: state.fetchedRepos,
     isTriggered: state.isTriggered,
   }
@@ -76,11 +77,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchRepos: (user) => {
       const request = axios.get(`${GH_API_BASIC}${user}/repos`);      
       const action = {type: 'FETCH_REPOS', fetchedRepos: request};
-      dispatch(action);
-    },
-    fetchUser: (user) => {
-      const request = axios.get(`${GH_API_BASIC}${user}`);      
-      const action = {type: 'FETCH_REPOS', fetchedUser: request};
       dispatch(action);
     }
   }
