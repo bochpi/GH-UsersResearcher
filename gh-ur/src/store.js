@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   //console.log('reducer', action);
-  console.log(state);
+  //console.log(state);
   switch (action.type) {
     case 'HANDLE_INPUT_CHANGE':
       return {...state, currentInput: action.currentInput, users: action.users};
