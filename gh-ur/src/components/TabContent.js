@@ -10,7 +10,7 @@ class TabContent extends Component {
 
   renderRepos(repos) {
     return repos.map((repo) => {
-        return <li className="example" key={repo.full_name}><Icon name="github" className="mr" />{repo.full_name}</li>;
+        return <li className="example" key={repo.full_name}><a href={`https://github.com/${repo.owner.login}/${repo.name}`} target="blank"><Icon name="github" className="mr" />{repo.full_name}</a></li>;
     });
   }
 
