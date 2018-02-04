@@ -35,7 +35,15 @@ class TabContent extends Component {
   render() {
     return (
       <div style={{marginBottom: 100}}>
+        <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+          className="animated-items-list">
         {this.props.fetchedRepos.length > 0 ? this.renderUserInfo(this.props.fetchedRepos[0].owner) : null}
+        </ReactCSSTransitionGroup>
         <ul>
           {this.props.fetchedRepos.length > 0 ?
             <ReactCSSTransitionGroup

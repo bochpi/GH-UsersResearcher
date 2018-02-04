@@ -171,19 +171,38 @@ a {
 /*-------------------------------------------------------------------------------*/
 
 .example-enter {
-  transform: scale(0);
+  /* transform: scale(0); */
+  opacity: 0;
+  top: 50px;
 }
 
 .example-enter.example-enter-active {
-  transform: scale(1);
-  transition: 500ms ease-in all;
+  /* transform: scale(1);
+  transition: 500ms ease-in all; */
+  opacity: 1;
+  top: 0;
+  transition: all 500ms; 
 }
 
+/* .example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+} */
+
 .example-leave {
-  transform: scale(1);
+  /* transform: scale(1); */
+  opacity: 1;
+  top: 0;
 }
 
 .example-leave.example-leave-active {
-  transform: scale(0);
-  transition: 500ms ease-in all;
+  /* transform: scale(0);
+  transition: 500ms ease-in all; */
+  opacity: 0;
+  top: 50px;
+  transition: all 500ms;
 }

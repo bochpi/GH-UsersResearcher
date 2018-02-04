@@ -7,7 +7,7 @@ class TabList extends Component {
   renderUsersTabs(users) {
     return users.map((user) => {
       if (user.length > 0)
-        return <Tab name={user} />
+        return <Tab name={user} key={user.login} />
     });
   }
 
